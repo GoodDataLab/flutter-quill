@@ -64,6 +64,7 @@ class ImageButton extends StatelessWidget {
   }
 
   Future<void> _onPressedHandler(BuildContext context) async {
+    /*
     if (onImagePickCallback != null) {
       final selector =
           mediaPickSettingSelector ?? ImageVideoUtils.selectMediaPickSetting;
@@ -78,6 +79,7 @@ class ImageButton extends StatelessWidget {
     } else {
       _typeLink(context);
     }
+    */
   }
 
   void _pickImage(BuildContext context) => ImageVideoUtils.handleImageButtonTap(

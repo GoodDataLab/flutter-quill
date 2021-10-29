@@ -137,6 +137,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
     ];
 
     return QuillToolbar(
+      color: Colors.white,
       key: key,
       toolBarHeight: toolbarIconSize * 2,
       multiRowsDisplay: multiRowsDisplay,
