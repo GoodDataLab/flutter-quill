@@ -15,6 +15,7 @@ class ImageButton extends StatelessWidget {
   const ImageButton({
     required this.icon,
     required this.controller,
+    this.onPressed,
     this.iconSize = kDefaultIconSize,
     this.onImagePickCallback,
     this.fillColor,
@@ -28,6 +29,8 @@ class ImageButton extends StatelessWidget {
 
   final IconData icon;
   final double iconSize;
+
+  final Future<String?> Function()? onPressed;
 
   final Color? fillColor;
 
@@ -64,22 +67,29 @@ class ImageButton extends StatelessWidget {
   }
 
   Future<void> _onPressedHandler(BuildContext context) async {
-    /*
-    if (onImagePickCallback != null) {
-      final selector =
-          mediaPickSettingSelector ?? ImageVideoUtils.selectMediaPickSetting;
-      final source = await selector(context);
-      if (source != null) {
-        if (source == MediaPickSetting.Gallery) {
-          _pickImage(context);
-        } else {
-          _typeLink(context);
-        }
+    if (onPressed != null) {
+      final url = await onPressed!();
+      if (url != null) {
+        final index = controller.selection.baseOffset;
+        final length = controller.selection.extentOffset - index;
+        controller.replaceText(index, length, BlockEmbed.image(url), null);
       }
     } else {
-      _typeLink(context);
+      if (onImagePickCallback != null) {
+        final selector =
+            mediaPickSettingSelector ?? ImageVideoUtils.selectMediaPickSetting;
+        final source = await selector(context);
+        if (source != null) {
+          if (source == MediaPickSetting.Gallery) {
+            _pickImage(context);
+          } else {
+            _typeLink(context);
+          }
+        }
+      } else {
+        _typeLink(context);
+      }
     }
-    */
   }
 
   void _pickImage(BuildContext context) => ImageVideoUtils.handleImageButtonTap(

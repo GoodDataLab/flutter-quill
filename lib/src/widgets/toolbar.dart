@@ -99,6 +99,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
     FilePickImpl? filePickImpl,
     WebImagePickImpl? webImagePickImpl,
     WebVideoPickImpl? webVideoPickImpl,
+    final Future<String?> Function()? onImageButtonPressed,
 
     ///The theme to use for the icons in the toolbar, uses type [QuillIconTheme]
     QuillIconTheme? iconTheme,
@@ -241,6 +242,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
             mediaPickSettingSelector: mediaPickSettingSelector,
             iconTheme: iconTheme,
             dialogTheme: dialogTheme,
+            onPressed: onImageButtonPressed,
           ),
         if (showVideoButton)
           VideoButton(
