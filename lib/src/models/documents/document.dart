@@ -174,6 +174,14 @@ class Document {
     _history.handleDocChange(change);
   }
 
+  void update(Delta delta) {
+    assert(!_observer.isClosed);
+    delta.trim();
+    assert(delta.isNotEmpty);
+    delta = _transform(delta);
+    _delta = delta;
+  }
+
   Tuple2 undo() {
     return _history.undo(this);
   }
