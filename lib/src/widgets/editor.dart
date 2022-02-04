@@ -197,7 +197,7 @@ Widget _defaultEmbedBuilder(
               child: imageUrl.startsWith('http')
                   ? Image.network(imageUrl, width: w, height: h, alignment: a)
                   : isBase64(imageUrl)
-                      ? Image.memory(base64.decode(imageUrl),
+                      ? MemoryImage(base64.decode(imageUrl),
                           width: w, height: h, alignment: a)
                       : Image.file(io.File(imageUrl),
                           width: w, height: h, alignment: a));
